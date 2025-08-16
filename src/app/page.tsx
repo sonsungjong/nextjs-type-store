@@ -19,9 +19,9 @@ export default function Home() {
   const [stores, setStores] = useState<Store[]>([]);
 
   useEffect(()=>{
-    // http://localhost:3000/api/store/incheon 로 get요청
+    // /api/store/incheon 로 get요청
     async function fetchStores(){
-      let res = await fetch('http://localhost:3000/api/store/incheon');
+      let res = await fetch('/api/store/incheon');
       let data = await res.json();
 
       // 받아온 데이터 console.log

@@ -1,9 +1,10 @@
 // npm install mongodb
 // 몽고DB 접속을 위한 코드
-// mongodb+srv://admin:admin@cluster0.e2pefds.mongodb.net/
+// mongodb+srv://ID:PW@cluster0.e2pefds.mongodb.net/
 
 import { MongoClient } from "mongodb";
-const url = 'mongodb+srv://admin:admin@cluster0.e2pefds.mongodb.net/?retryWrites=true&w=majority'
+//const url = 'mongodb+srv://ID:PW@cluster0.e2pefds.mongodb.net/?retryWrites=true&w=majority'
+const url = `${process.env.MONGODB_URL}?retryWrites=true&w=majority`
 const options = {};
 let connectDB : Promise<MongoClient>;
 

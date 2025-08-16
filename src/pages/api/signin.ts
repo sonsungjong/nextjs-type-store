@@ -3,10 +3,10 @@
 import { connectDB } from "@/Utils/db";
 import { NextApiRequest, NextApiResponse } from "next";
 
-// http://localhost:3000/api/signin 으로 접속하면 동작할 함수 (API)
+// /api/signin 으로 접속하면 동작할 함수 (API)
 export default async function handler(req : NextApiRequest, res : NextApiResponse)
 {
-    console.log('http://localhost:3000/api/signin 들어옴')
+    console.log('/api/signin 들어옴')
 
     // CORS 설정 (다른 IP/포트에 대해 연결 허용) : 테스트를 위해 모든 IP 허용
     res.setHeader("Access-Control-Allow-Origin", "*");      // * : 모든

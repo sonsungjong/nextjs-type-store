@@ -7,7 +7,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req : NextApiRequest, res : NextApiResponse)
 {
-    // http://localhost:3000/api/signup 로 요청하면 동작할 함수
+    // /api/signup 로 요청하면 동작할 함수
     console.log('들어옴')
     
     // CORS 설정 (다른 IP/포트에 대해 연결 허용) : 테스트를 위해 모든 IP 허용

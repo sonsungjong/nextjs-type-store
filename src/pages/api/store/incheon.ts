@@ -1,4 +1,4 @@
-// http://localhost:3000/api/store/incheon
+// /api/store/incheon
 
 import { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
