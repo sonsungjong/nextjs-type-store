@@ -5,13 +5,13 @@ import { useState } from "react";
 export default function Weather() {
     const [prompt, setPrompt] = useState('')
 
-async function handleSubmit(e : React.FormEvent)
+    async function handleSubmit(e : React.FormEvent)
     {
         e.preventDefault(); // Prevents the default form submission and page refresh
 
         // Send a POST request to /api/chat/gpt with the prompt data
         try {
-            const response = await fetch('/api/chat/gpt', {
+            const response = await fetch(`/api/chat/gpt`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
