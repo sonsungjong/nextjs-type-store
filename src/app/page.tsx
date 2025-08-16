@@ -21,8 +21,8 @@ export default function Home() {
   useEffect(()=>{
     // /api/store/incheon 로 get요청
     async function fetchStores(){
-      let res = await fetch('/api/store/incheon');
-      let data = await res.json();
+      const res = await fetch('/api/store/incheon');
+      const data = await res.json();
 
       // 받아온 데이터 console.log
       console.log(data);
