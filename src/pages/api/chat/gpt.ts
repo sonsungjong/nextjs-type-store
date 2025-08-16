@@ -8,6 +8,7 @@ const client = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
 export default async function handler(req : NextApiRequest, res : NextApiResponse)
 {
     // POST 요청이 아니면 405 리턴해서 종료
+    console.log('들어옴')
     if(req.method !== "POST")
     {
         return res.status(405).json({text:'허가되지않은 요청입니다'})
