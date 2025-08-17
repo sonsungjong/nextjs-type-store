@@ -48,7 +48,7 @@ export default async function handler(req : NextApiRequest, res : NextApiRespons
             text: prompt.trim(),
             createdAt: now
         }
-        await db.collection('mydb').insertOne(userDoc);     // 사용자가 입력한 정보를 DB에 저장
+        await db.collection('chat').insertOne(userDoc);     // 사용자가 입력한 정보를 DB에 저장
 
         // 2. OpenAI 호출
         const response = await client.responses.create({
@@ -67,7 +67,7 @@ export default async function handler(req : NextApiRequest, res : NextApiRespons
             text: text,
             createdAt: new Date()
         }
-        await db.collection('mydb').insertOne(AIDoc);           // AI 응답을 DB에 저장
+        await db.collection('chat').insertOne(AIDoc);           // AI 응답을 DB에 저장
 
         // 4. 채팅방의 최신메시지 시각 갱신
         await db.collection('room').updateOne({_id:rid}, {$set:{lastChatAt: new Date()}})
@@ -79,3 +79,5 @@ export default async function handler(req : NextApiRequest, res : NextApiRespons
         res.status(500).json({text:'서버 에러'})        // 백엔드 부분에서 처리하다가 에러나면
     }
 }
+
+// 로그인 -> 채팅방 목록을 받아오기 -> 채팅방생성/채팅방삭제 -> 채팅방 선택 시 채팅목록 받아오기 -> 채팅하면 저장
