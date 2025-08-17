@@ -36,7 +36,7 @@ export default async function handler(req : NextApiRequest, res : NextApiRespons
                 // user를 찾았다 (res.ok)
                 return res.status(200).json({
                     email:user.email,
-                    token:'1'           // 로그인 완료 권한
+                    token:String(user._id)           // 로그인 완료 권한
                 })
             }else{
                 // user를 못찾았다 (!res.ok)

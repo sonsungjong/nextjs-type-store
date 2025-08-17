@@ -1,3 +1,5 @@
+// 채팅내용 DB저장
+
 // /api/chat/gpt
 // npm install openai
 import { NextApiRequest, NextApiResponse } from "next";
