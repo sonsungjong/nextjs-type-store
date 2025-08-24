@@ -10,6 +10,16 @@ import { NextApiRequest, NextApiResponse } from "next";
 export default async function handler(req : NextApiRequest, res : NextApiResponse)
 {
     try{
+        // CORS 설정 추가 (다른 IP/포트에 대해 연결 허용)
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Access-Control-Allow-Methods", "GET,POST,DELETE,PUT,OPTIONS");
+        res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, x-user-id");
+
+        // OPTIONS 메서드에 대한 사전 요청(preflight) 처리
+        if (req.method === "OPTIONS") {
+            return res.status(200).end();
+        }
+        
         // DB연결 (mydb 데이터베이스에 연결)
         const db = (await connectDB).db('mydb')
 

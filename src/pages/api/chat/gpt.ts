@@ -7,19 +7,35 @@ import OpenAI from "openai";
 import { connectDB } from "@/Utils/db";
 import { ObjectId } from "mongodb";
 
+export type Role = "user" | "assistant" | "system";
+
 const client = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
 
 export default async function handler(req : NextApiRequest, res : NextApiResponse)
 {
     // POST 요청이 아니면 405 리턴해서 종료
     console.log('들어옴')
+
+    // CORS 설정 추가 (다른 IP/포트에 대해 연결 허용)
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET,POST,DELETE,PUT,OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, x-user-id");
+
+    // OPTIONS 메서드에 대한 사전 요청(preflight) 처리
+    if (req.method === "OPTIONS") {
+        return res.status(200).end();
+    }
+
     if(req.method !== "POST")
     {
         return res.status(405).json({text:'허가되지않은 요청입니다'})
     }
 
     try{
-        const { prompt, roomId, userId, role } = req.body;        // 리액트에서 보낸 body를 분해
+        const body = typeof req.body === "string" ? JSON.parse(req.body) : (req.body || {});
+        const { prompt, roomId, userId, role } 
+        : {prompt? : string; roomId?: string; userId?:string;role?:Role}
+        = body;
 
         if (!prompt || !roomId || !userId || !role) {
             return res.status(400).json({ text: "잘못된 요청입니다" });
